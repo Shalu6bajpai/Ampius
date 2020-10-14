@@ -7,7 +7,7 @@
     <title></title>
 </head>
 <body>
-    <form action="action_page.php" method="post">
+    <form action="/data" method="POST">
         
       
         <div class="container">
@@ -15,18 +15,19 @@
           <input type="text" placeholder="Enter Username" name="uname" required>
       
           <label for="psw"><b>PostalCode</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-      
-          <button type="submit">View</button>
+          <input type="text" placeholder="Enter Password" name="postalCode" required>
+          <label for="psw"><b>Country</b></label>
+          <input type="text" placeholder="Enter Password" name="country" required>
+          <button type="submit">Submit</button>
         
         </div>
       
-        <div class="container" style="background-color:#f1f1f1">
+        <!-- <div class="container" style="background-color:#f1f1f1">
           <form method="GET" action="/index/admin">
           <button type="button" class="cancelbtn">Admin</button>
           </form>
          
-        </div>
-      </form>
+        </div> -->
+    </form>
 </body>
 </html>
