@@ -2,7 +2,7 @@ import pgeocode
 import sys
 import requests 
 
-URL = "http://127.0.0.1:8000"
+URL = "http://127.0.0.1:8000/fetchdata"
 def findCoordinates():
     postalCode = sys.argv[1]
     country = sys.argv[2]
