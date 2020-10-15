@@ -15,8 +15,8 @@ module.exports.admin= function(req, res){
 
 module.exports.data =  (req, res) =>{
     console.log('inside data controller :',req.body);
-
-    const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.uname ;
+    let port = process.env.PORT || 8000;
+    const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.uname + " " +  port;
     const exec = require('child_process').exec(CMD,{cwd:path.join(__dirname,'../scripts')} ,(error, stdout,stderr)=> {
         // console.log('cwd : ',cwd);
         if (error) {
