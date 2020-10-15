@@ -17,7 +17,7 @@ module.exports.data =  (req, res) =>{
     console.log('inside data controller :',req.body);
 
     const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.uname ;
-    const exect = require('child_process').exec(CMD,{cwd:path.join(__dirname,'../scripts')} ,(error, stdout,stderr)=> {
+    const exec = require('child_process').exec(CMD,{cwd:path.join(__dirname,'../scripts')} ,(error, stdout,stderr)=> {
         // console.log('cwd : ',cwd);
         if (error) {
         console.error(`exec error: ${error}`);
@@ -27,14 +27,14 @@ module.exports.data =  (req, res) =>{
     }
         console.log(`stdout: ${stdout}`);
         console.error(`stderr: ${stderr}`);
-        return res.status(200).json(stdout);
+        let result = stdout.replace(/'/g,'"');
+        return res.status(200).json(JSON.parse(result));
     })
 }
 
 module.exports.fetchDataFromPythonScript = async (req,res) =>{
     console.log('body : ',req.body);
     let user = await User.create({username: 'P',location: [req.body.latitude, req.body.longitude]});
-    // console.log('user : ',user);
     return res.status(200).json({
         data: {
             message: req.body
