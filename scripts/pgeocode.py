@@ -11,10 +11,11 @@ def findCoordinates():
     nomi = zcdb[code]
     obj = {
         "latitude": nomi.latitude,
-        "longitude": nomi.longitude 
+        "longitude": nomi.longitude,
+        "username" : sys.argv[2]
     }
     # obj = {}
-    # res = requests.post(URL,data=obj);
+    res = requests.post(URL,data=obj);
     print(obj);
     # print(obj);
   
