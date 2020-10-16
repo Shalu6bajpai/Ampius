@@ -1,7 +1,9 @@
 const express=require('express');
 const app=express();
 const port= process.env.PORT || 8000;
+
 const mongoose = require('./config/mongoose');
+//ejs template for  html page
 const expressLayouts=require('express-ejs-layouts');
 
 app.use(express.urlencoded());
