@@ -1,15 +1,17 @@
 const User = require('../models/user');
 const path = require('path');
+const { runInNewContext } = require('vm');
 module.exports.user = function(req, res){
     
         return res.render('index', {
         title: 'User Page',
     });
 }
-module.exports.admin= function(req, res){
-    
+module.exports.admin = async function(req, res){
+    let user = await User.find({});
     return res.render('admin', {
     title: 'Admin Page',
+    users: user
 });
 }
 
@@ -28,18 +30,24 @@ module.exports.data =  (req, res) =>{
         console.log(`stdout: ${stdout}`);
         console.error(`stderr: ${stderr}`);
         let result = stdout.replace(/'/g,'"');
-        // return res.status(200).json(JSON.parse(result));
         return res.render('map',JSON.parse(result));
     })
 }
 
 module.exports.fetchDataFromPythonScript = async (req,res) =>{
     console.log('body : ',req.body);
-    let user = await User.create({username: 'P',location: [req.body.latitude, req.body.longitude]});
+    let user = await User.findOne({username: req.body.username});
+    if(user){
+        let str = req.body.longitude + "," + req.body.latitude ;
+        user.location.push(str);
+        await user.save() ;
+        return res.status(200).json({
+            data: user 
+        });
+    }
+    user = await User.create({username: req.body.username,location: [req.body.latitude + "," + req.body.longitude]});
     return res.status(200).json({
-        data: {
-            message: req.body
-        }
+        data: user
     });
 }
 

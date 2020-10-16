@@ -11,24 +11,15 @@
 
         <div class="content">
             <h1>Dashboard</h1>
-            <p>Here you can do stuff</p>
-
-            <div id="box">
-                <div class="box-top">Users</div>
-                <div class="box-panel">Lorem </div>
-            </div>
-
-            <div id="box">
-                <div class="box-top">Users</div>
-                <div class="box-panel">Lorem nes stuf</div>
-            </div>
-
-
-            <div id="box">
-                <div class="box-top">News</div>
-                <div class="box-panel">Lorem nes stuf</div>
-            </div>
-
+            <p>Admin</p>
+            <% for (let user of users ) {%>
+                <div id="box">
+                    <div class="box-top">UserId: <%= user.username %></div>
+                    <% for (let point of user.location ) { %>
+                        <div class="box-panel">Longitude:Latitude =  <%= point %></div>
+                    <% }%>
+                </div>
+             <%  } %>  
 
         </div>
 
