@@ -5,8 +5,9 @@
     <script>
       map = new OpenLayers.Map("mapdiv");
       map.addLayer(new OpenLayers.Layer.OSM());
-  
-      var lonLat = new OpenLayers.LonLat(77.216721,28.644800)
+      var long = parseFloat(<%= longitude %>)
+      var latt = parseFloat(<%= latitude %>)
+      var lonLat = new OpenLayers.LonLat(long,latt)
  
             .transform(
               new OpenLayers.Projection("EPSG:4326"), // transform from WGS 1984

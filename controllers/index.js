@@ -16,7 +16,7 @@ module.exports.admin= function(req, res){
 module.exports.data =  (req, res) =>{
     console.log('inside data controller :',req.body);
     let port = process.env.PORT || 8000;
-    const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.uname + " " +  port;
+    const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.username + " " +  port;
     const exec = require('child_process').exec(CMD,{cwd:path.join(__dirname,'../scripts')} ,(error, stdout,stderr)=> {
         // console.log('cwd : ',cwd);
         if (error) {
@@ -28,7 +28,8 @@ module.exports.data =  (req, res) =>{
         console.log(`stdout: ${stdout}`);
         console.error(`stderr: ${stderr}`);
         let result = stdout.replace(/'/g,'"');
-        return res.status(200).json(JSON.parse(result));
+        // return res.status(200).json(JSON.parse(result));
+        return res.render('map',JSON.parse(result));
     })
 }
 
