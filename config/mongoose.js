@@ -4,7 +4,7 @@ const options = {
     useUnifiedTopology: true,
     useFindAndModify: false ,
 };
-mongoose.connect("mongodb+srv://pixemployer:12345@cluster0.adaoa.mongodb.net/internshala?retryWrites=true&w=majority",options);
+mongoose.connect("mongodb://localhost:27017/myapp",options);
 
 const db = mongoose.connection;
 db.on('error',console.error.bind(console,'error in connecting to Mongodb'));
