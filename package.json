@@ -11,7 +11,7 @@
     "pytho-script",
     "node"
   ],
-  "author": "shalloo bajpai",
+  "author": "P.S",
   "license": "ISC",
   "dependencies": {
     "ejs": "^3.1.5",
