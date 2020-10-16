@@ -4,7 +4,7 @@ const options = {
     useUnifiedTopology: true,
     useFindAndModify: false ,
 };
-mongoose.connect("mongodb+srv://admin:EkDJ3FODsB3wQGAc@cluster0.gzszx.mongodb.net/Ampiusdb?retryWrites=true&w=majority",options);
+mongoose.connect("mongodb://localhost:27017/Ampius",options);
 
 const db = mongoose.connection;
 db.on('error',console.error.bind(console,'error in connecting to Mongodb'));
