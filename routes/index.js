@@ -4,8 +4,8 @@ const router = express.Router();
 const userController=require('../controllers/index');
 router.get('/', userController.user);
 router.get('/admin',userController.admin);
-router.post('/data',userController.data);
-router.post('/fetchdata',userController.fetchDataFromPythonScript);
+router.post('/data',userController.Userdata);
+router.post('/fetchdata',userController.fetchData);
 
 
 

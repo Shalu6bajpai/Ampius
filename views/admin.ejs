@@ -6,17 +6,16 @@
     </head>
 
 <body>
-   <a class="mobile">MENU</a>
+   
      <div id="container">
 
-        <div class="content">
+     <div class="content">
             <h1>Dashboard</h1>
-            <p>Admin</p>
             <% for (let user of users ) {%>
                 <div id="box">
-                    <div class="box-top">UserId: <%= user.username %></div>
-                    <% for (let point of user.location ) { %>
-                        <div class="box-panel">Longitude:Latitude =  <%= point %></div>
+                    <div class="box-top" class="userid">UserId: <%= user.username %></div>
+                    <% for (let location of user.location ) { %>
+                        <div class="box-panel">Longitude:Latitude =  <%= location %></div>
                     <% }%>
                 </div>
              <%  } %>  

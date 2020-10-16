@@ -1,12 +1,14 @@
 const User = require('../models/user');
 const path = require('path');
 const { runInNewContext } = require('vm');
+//Rendering the user page
 module.exports.user = function(req, res){
     
         return res.render('index', {
         title: 'User Page',
     });
 }
+//Rendering admin page
 module.exports.admin = async function(req, res){
     let user = await User.find({});
     return res.render('admin', {
@@ -14,11 +16,11 @@ module.exports.admin = async function(req, res){
     users: user
 });
 }
-
-module.exports.data =  (req, res) =>{
+//Accessing data from user
+module.exports.Userdata =  (req, res) =>{
     console.log('inside data controller :',req.body);
-    let port = process.env.PORT || 8000;
-    const CMD = 'python .\\pgeocode.py ' + req.body.postalCode + " " + req.body.username + " " +  port;
+    let port = 8000;
+    const CMD = 'python .\\zipcode.py ' + req.body.postalCode + " " + req.body.username + " " +  port;
     const exec = require('child_process').exec(CMD,{cwd:path.join(__dirname,'../scripts')} ,(error, stdout,stderr)=> {
         // console.log('cwd : ',cwd);
         if (error) {
@@ -33,8 +35,8 @@ module.exports.data =  (req, res) =>{
         return res.render('map',JSON.parse(result));
     })
 }
-
-module.exports.fetchDataFromPythonScript = async (req,res) =>{
+//Fetching the data for mapping 
+module.exports.fetchData = async (req,res) =>{
     console.log('body : ',req.body);
     let user = await User.findOne({username: req.body.username});
     if(user){
