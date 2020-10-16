@@ -10,5 +10,5 @@ npm start
 
 #Routes
 admin - http://127.0.0.1:8000/admin
-user - http//127.0.0.1:8000/
+user - http://127.0.0.1:8000/
 view location - http://127.0.0.1:8000/data
